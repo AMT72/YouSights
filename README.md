@@ -1,4 +1,4 @@
-# 📊 YouSight: YouTube Comments Sentiment Analyzer
+# 📊 YouSights: YouTube Comments Sentiment Analyzer
 
 **YouSight** is a powerful tool designed to extract, analyze, and visualize the sentiment of YouTube comments. By leveraging the **Camel-BERT** model, it provides high accuracy in understanding various Arabic dialects, helping creators and researchers gain deeper insights into audience feedback.
 
