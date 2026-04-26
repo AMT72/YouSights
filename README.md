@@ -1,71 +1,51 @@
-# 📊 YouSights: YouTube Comments Sentiment Analyzer
+# 🎯 YouSights
 
-**YouSight** is a powerful tool designed to extract, analyze, and visualize the sentiment of YouTube comments. By leveraging the **Camel-BERT** model, it provides high accuracy in understanding various Arabic dialects, helping creators and researchers gain deeper insights into audience feedback.
+> Discover. Analyze. Understand your audience.
 
----
-
-## 🚀 Key Features
-
-### 🔹 Automated Extraction
-
-Fetches comments directly from YouTube using a video URL via the **YouTube Data API**.
-
-### 🔹 Data Organization
-
-Automatically saves extracted comments into structured **Excel files** for easy analysis.
-
-### 🔹 Advanced AI Analysis
-
-Utilizes **Camel-BERT** for precise sentiment classification:
-
-* Positive
-* Negative
-* Neutral
-
-Especially effective for Arabic dialects.
-
-### 🔹 Insightful Reports
-
-Generates ready-to-use reports including:
-
-* Sentiment distribution percentages
-* Analysis of most liked comments
-* Visual representation of audience engagement
+A Streamlit web app that fetches YouTube comments, runs Arabic sentiment analysis, and exports a professional PDF report — all in one click.
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-* **Language:** Python
-* **Framework:** Streamlit (Web Interface)
-* **AI Model:** Camel-BERT (Fine-tuned for Arabic Sentiment Analysis)
-* **Data Handling:** Pandas, Openpyxl
-* **Visualization:** Plotly / Matplotlib
-* **APIs:** YouTube Data API v3
+- 📥 **Fetch comments** from any YouTube video (up to 500 comments)
+- 🧠 **Arabic sentiment analysis** powered by CAMeL-Lab BERT model
+- 📊 **Interactive charts** — pie chart, bar chart, and sentiment trend
+- 🏆 **Top N most liked comments** with sentiment labels
+- 🔍 **Search & filter** across all comments
+- 📄 **Download PDF report** matching the YouSights dark teal design
+- 📊 **Download CSV / Excel** for further analysis
 
 ---
 
-## 📦 Installation & Setup
+## 🖥️ Preview
 
-### 1. Clone the Repository
+| Section | What you see |
+|---------|-------------|
+| Sentiment Overview | Pie + bar charts with Positive / Neutral / Negative % |
+| Trend Chart | Rolling sentiment score across all comments |
+| Top Comments | Ranked by likes with sentiment badge |
+| All Comments | Searchable, filterable table |
+| Report | PDF with YouSights branding |
+
+---
+
+## 🚀 Setup
+
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/YouSight.git
-cd YouSight
+git clone https://github.com/YOUR_USERNAME/YouSights.git
+cd YouSights
 ```
 
-### 2. Install Dependencies
+### 2. Install dependencies
 
 ```bash
-pip install -q streamlit pandas transformers torch openpyxl google-api-python-client
+pip install -r requirements.txt
 ```
 
-### 3. Set Up API Key
-
-* Get your API Key from Google Cloud Console
-* Add it to a configuration file or as an environment variable
-
-### 4. Run the App
+### 3. Run the app
 
 ```bash
 streamlit run app.py
@@ -73,23 +53,78 @@ streamlit run app.py
 
 ---
 
-## 🖥️ How it Works
+## 🔑 API Keys Required
 
-1. **Input:** Paste the YouTube video link into the dashboard
-2. **Process:**
+You'll enter both keys directly in the app sidebar — nothing is stored.
 
-   * Fetch comments
-   * Clean text
-   * Run sentiment analysis using Camel-BERT
-3. **Output:**
+### YouTube Data API v3
 
-   * Generate a report
-   * Display interactive charts showing audience "Vibe"
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project
+3. Enable **YouTube Data API v3**
+4. Go to **Credentials → Create API Key**
+5. Copy the key and paste it in the sidebar
+
+### HuggingFace Token
+
+1. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+2. Create a **Read** token
+3. Copy and paste it in the sidebar
+
+> The token is needed to download the Arabic sentiment model on first run (~500MB, cached after that).
 
 ---
 
-## 💡 Why Camel-BERT?
+## 🤖 Sentiment Model
 
-Unlike general-purpose models, **Camel-BERT** is trained on large-scale Arabic datasets, including both classical Arabic and regional dialects. This makes **YouSight** highly effective at understanding nuanced audience feedback across different Arabic-speaking regions (Saudi, Egyptian, Levantine, etc.).
+**CAMeL-Lab/bert-base-arabic-camelbert-mix-sentiment**
+
+- Trained on mixed Arabic text (MSA + dialects)
+- Labels: `positive`, `neutral`, `negative`
+- Hosted on HuggingFace — loaded once and cached
 
 ---
+
+## 🗂️ Project Structure
+
+```
+YouSights/
+├── app.py              ← Main Streamlit application
+├── requirements.txt    ← Python dependencies
+└── README.md
+```
+
+---
+
+## 📋 Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| UI | Streamlit |
+| YouTube data | Google YouTube Data API v3 |
+| Sentiment model | CAMeL-Lab Arabic BERT (HuggingFace) |
+| Charts | Plotly |
+| PDF report | ReportLab |
+| Excel export | openpyxl |
+
+---
+
+## 🛠️ Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| `ModuleNotFoundError: matplotlib` | `pip install matplotlib` |
+| `YouTubeAPI quota exceeded` | Wait 24h or create a new API key |
+| Model download slow | Normal on first run (~500MB) — cached after |
+| Comments show 0 | Video may have comments disabled |
+| PDF Arabic text reversed | Known ReportLab limitation — use the CSV export instead |
+
+---
+
+## 📄 License
+
+MIT License — free to use and modify.
+
+---
+
+**Developed by Azzam** — YouSights v2.0
