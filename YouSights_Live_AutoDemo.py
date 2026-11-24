@@ -100,7 +100,10 @@ def language_group(text):
 @st.cache_resource(show_spinner=False)
 def load_model():
     torch.set_num_threads(2)
-    tok=AutoTokenizer.from_pretrained(MODEL_NAME)
+    tok = AutoTokenizer.from_pretrained(
+    MODEL_NAME,
+    use_fast=False
+)
     mdl=AutoModelForSequenceClassification.from_pretrained(MODEL_NAME).eval()
     return tok,mdl
 
