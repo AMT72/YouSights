@@ -1,6 +1,7 @@
 streamlit
 google-api-python-client
-transformers
+sentencepiece>=0.2.0
+transformers>=4.46,<5
 torch
 pandas
 plotly
