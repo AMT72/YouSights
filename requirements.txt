@@ -7,3 +7,4 @@ plotly
 huggingface_hub
 reportlab
 openpyxl
+tiktoken
